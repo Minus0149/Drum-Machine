@@ -59,16 +59,21 @@ const DrumMachine = () => {
 		},
 	];
 	return (
-		<div>
-			{drumsInfo.map((dI) => (
-				<DrumsPad
-					id={dI.id}
-					keyCode={dI.keyCode}
-					keyTrigger={dI.keyTrigger}
-					url={dI.url}
-					volume={0.75}
-				/>
-			))}
+		<div className="drum-machine">
+			<header className="header">
+				<h1>DRUM MACHINE</h1>
+			</header>
+			<div className="drum-pads">
+				{drumsInfo.map((dI) => (
+					<DrumsPad
+						id={dI.id}
+						keyCode={dI.keyCode}
+						keyTrigger={dI.keyTrigger}
+						url={dI.url}
+						volume={0.75}
+					/>
+				))}
+			</div>
 		</div>
 	);
 };
