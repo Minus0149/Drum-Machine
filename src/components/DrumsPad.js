@@ -10,6 +10,10 @@ const DrumsPad = (props) => {
 	const handleKeyDown = (e) => {
 		if (e.keyCode === props.keyCode || e.which === props.keyCode) {
 			playSound();
+			document.getElementById(props.id).classList.add("focus");
+			setTimeout(() => {
+				document.getElementById(props.id).classList.remove("focus");
+			}, 100);
 		}
 	};
 	useLayoutEffect(() => {
