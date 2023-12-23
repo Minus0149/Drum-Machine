@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { PiSpeakerHighBold, PiSpeakerSlashBold } from "react-icons/pi";
 import DrumsPad from "./DrumsPad";
 
 const DrumMachine = () => {
+	const [volume, setVolume] = useState(1);
+	const [mute, setMute] = useState(false);
 	const drumsInfo = [
 		{
 			keyCode: 81,
@@ -59,20 +62,57 @@ const DrumMachine = () => {
 		},
 	];
 	return (
-		<div className="drum-machine">
+		<div className="drum-machine-container">
 			<header className="header">
 				<h1>DRUM MACHINE</h1>
 			</header>
-			<div className="drum-pads">
-				{drumsInfo.map((dI) => (
-					<DrumsPad
-						id={dI.id}
-						keyCode={dI.keyCode}
-						keyTrigger={dI.keyTrigger}
-						url={dI.url}
-						volume={0.75}
+			<div className="drum-machine">
+				<div className="drum-pads">
+					{drumsInfo.map((dI) => (
+						<DrumsPad
+							id={dI.id}
+							keyCode={dI.keyCode}
+							keyTrigger={dI.keyTrigger}
+							url={dI.url}
+							volume={volume}
+						/>
+					))}
+				</div>
+				<div className="volume">
+					{mute || volume === 0 ? (
+						<PiSpeakerSlashBold
+							onClick={() => {
+								setMute(false);
+								setVolume(0.5);
+							}}
+						/>
+					) : (
+						<PiSpeakerHighBold
+							onClick={() => {
+								setMute(true);
+								setVolume(0);
+							}}
+						/>
+					)}
+					<input
+						type="range"
+						min={0}
+						max={1}
+						step={0.02}
+						id="volume"
+						value={volume}
+						style={{ "--litters-range": `${Math.round(100 * volume)}%` }}
+						onChange={(event) => {
+							setVolume(event.target.valueAsNumber);
+						}}
+						onTouchStart={() => {
+							document.getElementById("volume").classList.add("active");
+						}}
+						onTouchEnd={() => {
+							document.getElementById("volume").classList.remove("active");
+						}}
 					/>
-				))}
+				</div>
 			</div>
 		</div>
 	);
