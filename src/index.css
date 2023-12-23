@@ -9,6 +9,13 @@
 * {
 	box-sizing: border-box;
 	transition: all 0.2s ease;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 body {
@@ -35,12 +42,12 @@ code {
 	justify-content: center;
 }
 
-.drum-machine {
+.drum-machine-container {
 	text-align: center;
 	background-color: var(--color-2);
 	width: 400px;
-	padding: 20px;
-	border-radius: 10px;
+	padding: 0px 20px 20px 20px;
+	border-radius: 5px;
 	box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
 }
 
@@ -48,6 +55,7 @@ code {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 20px;
+	padding-top: 5px;
 }
 
 .drum-pad {
@@ -58,12 +66,6 @@ code {
 	box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
 	font-weight: 700;
 	font-size: 1.25rem;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 }
 
 .heading {
@@ -77,4 +79,48 @@ code {
 
 .focus {
 	background-color: var(--color-2);
+}
+
+.volume {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	font-size: 1.5rem;
+	gap: 15px;
+}
+
+input {
+	cursor: pointer;
+	width: 80%;
+	appearance: none;
+	outline: none;
+	height: 6px;
+	border-radius: 0.5vmin;
+	background: linear-gradient(
+		to right,
+		var(--color-4) var(--litters-range),
+		var(--color-1) var(--litters-range)
+	);
+	color: var(--color-4);
+}
+
+input::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+}
+
+input::-webkit-slider-thumb:hover,
+input::-webkit-slider-thumb:focus,
+input::-webkit-slider-thumb:active {
+	background: var(--color-4);
+	cursor: pointer;
+}
+
+.active::-webkit-slider-thumb {
+	background: var(--color-4);
+	cursor: pointer;
 }
